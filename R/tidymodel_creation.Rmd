@@ -1,0 +1,91 @@
+---
+title: "Tidymodel Creation"
+author: "Ryan Johnson"
+date: "12/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(palmerpenguins)
+library(pins)
+
+knitr::opts_chunk$set(echo = TRUE)
+theme_set(theme_minimal())
+```
+
+# Explore and Clean the Data
+
+```{r}
+# Create ggplot2
+penguins %>%
+  filter(!is.na(sex)) %>%
+  ggplot(aes(flipper_length_mm, bill_length_mm, color = sex, size = body_mass_g)) +
+  geom_point(alpha = 0.5) +
+  labs(y = "Bill Length (mm)", 
+       x = "Flipper Length (mm)",
+       size = "Body Mass (g)",
+       sex = "Sex") +
+  facet_wrap(~species)
+```
+
+```{r}
+penguins
+```
+
+```{r}
+# Remove year and Island
+# Remove NAs from Sex
+penguins_df <- penguins %>%
+  filter(!is.na(sex)) %>%
+  select(-year, -island)
+```
+
+# Create Model using tidymodels
+
+For this example, we are simply going to create a tidymodel using logistic regression. If you'd like to learn more about training/testing/evaluating a model, please visit the [tidymodels website](https://www.tidymodels.org/).
+
+## Define model specification and build workflow
+
+```{r}
+# Use logistic regression (glm)
+glm_spec <- logistic_reg() %>% 
+  set_engine("glm")
+
+# Build Workflow
+penguin_wf <- workflow() %>% 
+  add_formula(sex ~ .)
+```
+
+## Create Model
+
+```{r}
+# Split data into training and testing
+set.seed(123)
+penguin_split <- initial_split(penguins_df, strata = sex)
+penguin_train <- training(penguin_split)
+penguin_test <- testing(penguin_split)
+
+# Create model on trainig set
+penguins_model <- penguin_wf %>% 
+  add_model(glm_spec) %>% 
+  fit(penguin_train)
+
+# Validate on testing set
+pred_val <- penguins_model %>% 
+  predict(penguin_test) %>% 
+  bind_cols(penguin_test)
+
+conf_mat(pred_val, sex, .pred_class)
+```
+
+# Save Model as [Pin](https://pins.rstudio.com/)
+
+```{r}
+# Register board
+board <- board_rsconnect(server = "https://colorado.rstudio.com/rsc/")
+
+# Pin model to Connect
+board %>% pin_write(penguins_model, "Penguins_Model")
+```
