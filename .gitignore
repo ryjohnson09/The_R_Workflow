@@ -6,3 +6,5 @@ renv/
 Plumber_API/rsconnect/
 R/rsconnect/
 .Rprofile
+rsconnect/
+R_Workflow_Content.html
