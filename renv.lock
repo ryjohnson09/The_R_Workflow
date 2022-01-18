@@ -219,6 +219,13 @@
       "Repository": "RSPM",
       "Hash": "c6bb5e1ef58f2f1c84f238f55bd2e56a"
     },
+    "connectwidgets": {
+      "Package": "connectwidgets",
+      "Version": "0.1.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "0b1b8f02ebf68c9ec88cc7f642b7d31b"
+    },
     "cpp11": {
       "Package": "cpp11",
       "Version": "0.4.2",
@@ -232,6 +239,13 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "0a6a65d92bd45b47b94b84244b528d17"
+    },
+    "crosstalk": {
+      "Package": "crosstalk",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "6aa54f69598c32177e920eb3402e8293"
     },
     "curl": {
       "Package": "curl",
@@ -471,6 +485,13 @@
       "Repository": "RSPM",
       "Hash": "526c484233f42522278ab06fb185cb26"
     },
+    "htmlwidgets": {
+      "Package": "htmlwidgets",
+      "Version": "1.5.4",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "76147821cd3fcd8c4b04e1ef0498e7fb"
+    },
     "httpuv": {
       "Package": "httpuv",
       "Version": "1.6.4",
@@ -568,6 +589,13 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "4c31a28528978d8689145f5274ce9058"
+    },
+    "lazyeval": {
+      "Package": "lazyeval",
+      "Version": "0.2.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "d908914ae53b04d4c0c0fd72ecc35370"
     },
     "lhs": {
       "Package": "lhs",
@@ -813,6 +841,20 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "5e3c5dc0b071b21fa128676560dbe94d"
+    },
+    "reactR": {
+      "Package": "reactR",
+      "Version": "0.4.4",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "75389c8091eb14ee21c6bc87a88b3809"
+    },
+    "reactable": {
+      "Package": "reactable",
+      "Version": "0.2.3",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "ac1afe50d1c77470a72971a07fd146b1"
     },
     "readr": {
       "Package": "readr",
