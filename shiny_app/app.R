@@ -50,7 +50,7 @@ server <- function(input, output) {
 
     # Use API to get penguin sex prediction
     sex_pred <- reactive({
-        httr::GET(
+        res <- httr::GET(
             "https://colorado.rstudio.com/rsc/penguins_api/pred",
             query = list(
                 species = input$species,
@@ -59,8 +59,12 @@ server <- function(input, output) {
                 flipper_length_mm = input$fl,
                 body_mass_g = input$bm
             )
-        ) %>%
-            httr::content() %>%
+        )
+        #browser()
+        message(res) 
+        res2 <- httr::content(res)
+        message(res2)
+        res2 %>% 
             map_df(as_tibble) %>%
             rename(Female = .pred_female, Male = .pred_male) %>%
             pivot_longer(
